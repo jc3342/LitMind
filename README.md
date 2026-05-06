@@ -2,6 +2,8 @@
 
 > A persistent, LLM-maintained wiki for compounding AI/ML paper notes.
 
+**Languages:** English · [中文](README.zh-CN.md)
+
 A personal research knowledge base for AI/ML papers — also an Obsidian vault.
 Designed to compound knowledge across paper reads instead of re-deriving
 context every time.
@@ -68,6 +70,35 @@ These were learned from the gist comments and from running the system:
 - **Deterministic lint over LLM lint.** `tools/lint.py` checks frontmatter,
   body sections, slug collisions, dangling wikilinks, tag-promotion candidates,
   domain-folder consistency. Fast, repeatable, fails CI cleanly.
+
+---
+
+## Current status
+
+**Early / experimental** — bootstrapped 2026-05-06.
+
+What works end-to-end (validated on real input):
+- `/ingest` of a PDF → schema-conformant draft paper page (PyMuPDF for text)
+- `/approve` → draft to `wiki/`, MEMORY/log updated
+- `/lint` → deterministic checks pass (frontmatter, sections, slug uniqueness,
+  bare-slug wikilinks, domain-folder consistency)
+- Obsidian graph view shows the entity + dangling pending links
+
+What's designed but not yet exercised:
+- `/ask` — search wiki and answer with provenance citations
+- `/reflect <topic>` — periodic synthesis into `trends/`
+- Tag-promotion flow: lint flags candidates when ≥5 papers share a tag, but
+  no topic page has been promoted yet (only one paper indexed so far)
+
+What's missing:
+- Tests / CI
+- `.claude/commands/` slash commands (operations are invoked via natural
+  language; works but lacks tab-completion)
+- A second paper to start exercising the cross-link / tag-promotion behavior
+
+The schema (CLAUDE.md) has been deliberately revised once already after the
+first ingest — expect more such revisions as the wiki grows. Schema changes
+are tracked in `log.md`.
 
 ---
 
