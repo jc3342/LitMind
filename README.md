@@ -1,4 +1,6 @@
-# AI Research Assistant
+# LitMind
+
+> A persistent, LLM-maintained wiki for compounding AI/ML paper notes.
 
 A personal research knowledge base for AI/ML papers — also an Obsidian vault.
 Designed to compound knowledge across paper reads instead of re-deriving
@@ -72,7 +74,7 @@ These were learned from the gist comments and from running the system:
 ## Quick start (forking this for your own notes)
 
 ```bash
-git clone <this-repo> my-research-wiki
+git clone https://github.com/jc3342/LitMind.git my-research-wiki
 cd my-research-wiki
 python3 -m pip install -r requirements.txt
 
@@ -92,7 +94,7 @@ can see what a populated entity looks like.
 ## Repository layout
 
 ```
-AI_Research_Assistant/
+LitMind/
 ├── CLAUDE.md                # operations manual for the LLM (start here)
 ├── MEMORY.md                # top-level index of all entities
 ├── log.md                   # append-only audit of approve events

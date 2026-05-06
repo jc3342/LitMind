@@ -1,4 +1,4 @@
-# AI Research Assistant — Operations Manual
+# LitMind — Operations Manual
 
 This repo is a personal research knowledge base for AI/ML, inspired by Karpathy's
 LLM-Wiki gist (https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
