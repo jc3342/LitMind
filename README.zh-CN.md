@@ -21,7 +21,7 @@
 
 ## 工作原理
 
-故意分开的三层架构：
+分开的三层架构：
 
 ```
 sources/   你拥有的不可变原始材料（PDF，按 domain 分类）
@@ -54,7 +54,7 @@ wiki/      已批准的知识库（markdown + Obsidian wikilinks）
 
 **早期 / 实验性** —— 2026-05-06 开始搭建。
 
-端到端跑通过（在真实输入上验证）：
+在真实输入上验证：
 - `/ingest` 一篇 PDF → 符合 schema 的草稿 paper 页（用 PyMuPDF 提取文本）
 - `/approve` → 把草稿移入 `wiki/`，更新 MEMORY / log
 - `/lint` → 确定性检查通过（frontmatter、必备 section、slug 唯一性、裸 slug
@@ -80,10 +80,8 @@ Schema (CLAUDE.md) 在第一次 ingest 后已经主动修订过一次 —— 后
 
 ## 几个被实战验证有用的设计选择
 
-这些来自 Karpathy gist 评论里的经验和我们自己运行后的体会：
-
 - **Drafts 审批 gate**：LLM 永远不直接写 `wiki/`。每次改动先放到 `drafts/`，
-  显式 `/approve` 才合并。避免那种你三周后才发现的 LLM 飘移。
+  显式 `/approve` 才合并。
 - **Provenance 必填**：每条事实性论断都带 `^[paper-id:section]` 引用，否则就
   必须放在 "My take" 段。对抗 LLM 的有损压缩。
 - **自底向上的 topic**：不预设 topic 页。lint 在 ≥5 篇 paper 共享某 tag 时给
@@ -92,7 +90,7 @@ Schema (CLAUDE.md) 在第一次 ingest 后已经主动修订过一次 —— 后
   Obsidian 会把带路径前缀的当成字面路径，画 graph 时会变成幽灵节点。slug 在
   全 vault 内唯一，lint 强制检查。
 - **失败的 idea 不删**：标记 `status: dead` + reason。**反重复记忆** —— 防止
-  你半年后又冒出同一个死胡同想法。
+  冒出同一个死胡同想法。
 - **确定性 lint 优于 LLM lint**：`tools/lint.py` 检查 frontmatter、必备
   section、slug 冲突、悬空 wikilink、tag 提名候选、domain-folder 一致性。
   快、可重复、CI 友好。
@@ -152,8 +150,6 @@ LitMind/
 ---
 
 ## 致谢
-
-直接的智识来源：
 
 - **[Andrej Karpathy 的 LLM-Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)**
   —— 原始想法：把 LLM 当作能把综合成果**累积**起来的 wiki 维护者，而不是每次
