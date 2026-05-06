@@ -1,0 +1,25 @@
+# Local PDFs (personal copies, possibly copyright-restricted)
+*.pdf
+sources/papers/*
+!sources/papers/.gitkeep
+
+# Obsidian
+.obsidian/workspace*
+.obsidian/cache
+.obsidian/plugins/*/data.json
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+
+# Local-only scratch (uncomment if needed)
+# sources/inbox/
